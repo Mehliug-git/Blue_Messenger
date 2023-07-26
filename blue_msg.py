@@ -9,23 +9,7 @@ import time
 import tempfile
 import time
 
-"""
-HEHEHEHA :
 
-94:D3:31:F8:BB:00 / Tel Android
-DC:B7:2E:0A:97:4F / tel Kali
-
-
-
-
-
-
-
-ca devrait marcher t'arrive bine a isoler la MAC manque plus que la connexion foncitonne bien hehe
-
-
-
-"""
 #dossier temp pour l'output
 temp_dir = tempfile.mkdtemp()
 
