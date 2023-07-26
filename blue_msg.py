@@ -22,6 +22,7 @@ ble_list_addr = []
 # Setting the color combinations
 RED   = "\033[1;31m"  
 BLUE  = "\033[1;34m"
+BOLD_BLUE = "\033[2;34m"
 CYAN  = "\033[1;36m"
 GREEN = "\033[0;32m"
 RESET = "\033[0;0m"
@@ -30,11 +31,22 @@ REVERSE = "\033[;7m"
 
 
 def main():
-    print("""
-            tmp
-        """)
+    print(
+"""
+{BLUE}@@@@@@@   @@@       @@@  @@@  @@@@@@@@                 @@@@@@@@@@   @@@@@@@@   @@@@@@    @@@@@@   @@@@@@@@  @@@  @@@   @@@@@@@@  @@@@@@@@  @@@@@@@   
+@@@@@@@@  @@@       @@@  @@@  @@@@@@@@                 @@@@@@@@@@@  @@@@@@@@  @@@@@@@   @@@@@@@   @@@@@@@@  @@@@ @@@  @@@@@@@@@  @@@@@@@@  @@@@@@@@  
+@@!  @@@  @@!       @@!  @@@  @@!                      @@! @@! @@!  @@!       !@@       !@@       @@!       @@!@!@@@  !@@        @@!       @@!  @@@  
+!@   @!@  !@!       !@!  @!@  !@!                      !@! !@! !@!  !@!       !@!       !@!       !@!       !@!!@!@!  !@!        !@!       !@!  @!@  
+{RESET}{BOLD_BLUE}@!@!@!@   @!!       @!@  !@!  @!!!:!                   @!! !!@ @!@  @!!!:!    !!@@!!    !!@@!!    @!!!:!    @!@ !!@!  !@! @!@!@  @!!!:!    @!@!!@!   
+!!!@!!!!  !!!       !@!  !!!  !!!!!:                   !@!   ! !@!  !!!!!:     !!@!!!    !!@!!!   !!!!!:    !@!  !!!  !!! !!@!!  !!!!!:    !!@!@!    
+!!:  !!!  !!:       !!:  !!!  !!:                      !!:     !!:  !!:            !:!       !:!  !!:       !!:  !!!  :!!   !!:  !!:       !!: :!!   
+:!:  !:!   :!:      :!:  !:!  :!:                      :!:     :!:  :!:           !:!       !:!   :!:       :!:  !:!  :!:   !::  :!:       :!:  !:!  
+ :: ::::   :: ::::  ::::: ::   :: ::::  :::::::::::::  :::     ::    :: ::::  :::: ::   :::: ::    :: ::::   ::   ::   ::: ::::   :: ::::  ::   :::  
+:: : ::   : :: : :   : :  :   : :: ::   :::::::::::::   :      :    : :: ::   :: : :    :: : :    : :: ::   ::    :    :: :: :   : :: ::    :   : :  
+{RESET}
+""")
     # for the --help
-    parser = argparse.ArgumentParser(description='Mass Deauth wifi script\n\n Give to the script the interface name and the monitor interface name [without this wlan0 by default]')
+    parser = argparse.ArgumentParser(description='Bluetooth Messenger script for send a message to anyone with Bluetooth !')
     args = parser.parse_args()
 
     #sudo verification
