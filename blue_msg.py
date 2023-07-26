@@ -32,7 +32,7 @@ REVERSE = "\033[;7m"
 
 def main():
     print(
-"""
+f"""
 {BLUE}@@@@@@@   @@@       @@@  @@@  @@@@@@@@                 @@@@@@@@@@   @@@@@@@@   @@@@@@    @@@@@@   @@@@@@@@  @@@  @@@   @@@@@@@@  @@@@@@@@  @@@@@@@   
 @@@@@@@@  @@@       @@@  @@@  @@@@@@@@                 @@@@@@@@@@@  @@@@@@@@  @@@@@@@   @@@@@@@   @@@@@@@@  @@@@ @@@  @@@@@@@@@  @@@@@@@@  @@@@@@@@  
 @@!  @@@  @@!       @@!  @@@  @@!                      @@! @@! @@!  @@!       !@@       !@@       @@!       @@!@!@@@  !@@        @@!       @@!  @@@  
@@ -51,11 +51,11 @@ def main():
 
     #sudo verification
     if not os.geteuid() == 0:
-        print(BOLD, RED,f"[!] SUDO requied, please make a sudo command")
+        print(BOLD, RED,f"[!] SUDO requied, please make a sudo command",RESET)
         sys.exit()
     else:
         global new_name
-        new_name = input("Choose your message :")
+        new_name = input("[?] Choose your message :")
 
         #start bluetooth service
         os.system("systemctl start bluetooth")
@@ -80,13 +80,13 @@ def filter_lines_with_new(output):
 
     while True:
         try:
-            numero_ligne = int(input("Choose the number of the target (1 to {}): ".format(len(listes))))
+            numero_ligne = int(input("[?] Choose the number of the target (1 to {}): ".format(len(listes))))
             if 1 <= numero_ligne <= len(listes):
                 break
             else:
-                print(BOLD, RED,f"Wrong number, please retry")
+                print(BOLD, RED,f"[!] Wrong number, please retry",RESET)
         except ValueError:
-            print(BOLD, RED,f"Please insert a valid number")
+            print(BOLD, RED,f"[!] Please insert a valid number",RESET)
 
     # Afficher la liste correspondant à la ligne demandée par l'utilisateur
     ligne_demandee = listes[numero_ligne - 1]
@@ -102,7 +102,7 @@ def detecter_adresse_mac(data):
     if match:
         return match.group()
     else :
-        print("No match found")
+        print(BOLD, RED,"[!] No match found",RESET)
         sys.exit()
 
 
@@ -143,10 +143,10 @@ def connect_bluetooth(device_name, device_address):
     try:
         socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
         socket.connect((device_address, 1))
-        print(f"Connected to {device_name} with MAC : {device_address}")
+        print(GREEN,f"[+] Connected to {device_name} with MAC : {device_address}", RESET)
         return socket
     except bluetooth.btcommon.BluetoothError as err:
-        print(BOLD, RED,f"Failed to connect:", err)
+        print(BOLD, RED,f"[!] Failed to connect:", err, RESET)
         return None
 
 
@@ -172,18 +172,18 @@ def pair_bluetooth(device_address):
 
 
 # Trouver et afficher les adresses MAC des périphériques Bluetooth à proximité
-print("Try to find Bluetooth devices...")
+print("[+] Try to find Bluetooth devices...")
 #choix addresse MAC
 device_address = discover_bluetooth_devices()
 
 
 # Changer le nom de l'ordinateur en "TEST_BLUE"
-print(f"Change Bluetooth name to : {new_name}...")
+print(f"[+] Change Bluetooth name to : {new_name}...")
 change_computer_name(new_name)
 
 
 # Se connecter au premier périphérique Bluetooth trouvé
-print(f"Connect to {device_name} MAC : {device_address}")
+print(f"[+] Connect to {device_name} MAC : {device_address}")
 
 pair_bluetooth(device_address)
 
