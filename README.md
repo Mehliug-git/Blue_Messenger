@@ -1,4 +1,4 @@
-# Bluetooth Messager
+# Bluetooth Messenger
 
 <br>
 This script is for send a message to anyone with Bluetooth !
