@@ -14,6 +14,12 @@ First install the requirements :
 pip3 install -r requirements.txt
 
 ```
+And install bluetoothctl
+
+```
+apt-get install bluez
+```
+
 Now you can launch the script !
 
 ```

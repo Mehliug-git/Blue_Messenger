@@ -10,11 +10,11 @@ import tempfile
 import time
 
 
-#dossier temp pour l'output
+# Temp directory for output
 temp_dir = tempfile.mkdtemp()
 
 counter = 0
-scan_duration = 4
+scan_duration = 5
 
 ble_list_name = []
 ble_list_addr = []
@@ -86,7 +86,7 @@ def filter_lines_with_new(output):
             else:
                 print(BOLD, RED,f"Wrong number, please retry")
         except ValueError:
-            print(BOLD, RED,f"Please insert a valide number")
+            print(BOLD, RED,f"Please insert a valid number")
 
     # Afficher la liste correspondant à la ligne demandée par l'utilisateur
     ligne_demandee = listes[numero_ligne - 1]
