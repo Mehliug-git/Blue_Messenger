@@ -106,10 +106,7 @@ def detecter_adresse_mac(data):
         sys.exit()
 
 
-
-
-
-# Trouver les adresses MAC des périphériques Bluetooth à proximité
+# Find MAC address bluetooth
 def discover_bluetooth_devices():
     global device_name
     os.system(f"bluetoothctl --timeout {scan_duration} scan on > {temp_dir}/scan.txt")
@@ -119,7 +116,7 @@ def discover_bluetooth_devices():
         scan_out = file.read()
     
     
-    #fonc pour select uniquement les lignes avec new detect
+    #For only select lines with "NEW"
     data = filter_lines_with_new(scan_out)
 
     # sup des éléments après les 3 premiers commme ça on garde pas le nom peux importe cb d'éléments il prend se chien
