@@ -84,9 +84,9 @@ def filter_lines_with_new(output):
             if 1 <= numero_ligne <= len(listes):
                 break
             else:
-                print("Wrong number, please retry")
+                print(BOLD, RED,f"Wrong number, please retry")
         except ValueError:
-            print("Please insert a valide number")
+            print(BOLD, RED,f"Please insert a valide number")
 
     # Afficher la liste correspondant à la ligne demandée par l'utilisateur
     ligne_demandee = listes[numero_ligne - 1]
@@ -149,7 +149,7 @@ def connect_bluetooth(device_name, device_address):
         print(f"Connected to {device_name} with MAC : {device_address}")
         return socket
     except bluetooth.btcommon.BluetoothError as err:
-        print("Failed to connect:", err)
+        print(BOLD, RED,f"Failed to connect:", err)
         return None
 
 
@@ -170,18 +170,18 @@ def pair_bluetooth(device_address):
         time.sleep(2)
         pair_bluetooth(device_address)
     else:
-        print("HHAHAHAHAHAHAHHAA")
+        pass
 
 
 
 # Trouver et afficher les adresses MAC des périphériques Bluetooth à proximité
-print("Recherche des périphériques Bluetooth à proximité...")
+print("Try to find Bluetooth devices...")
 #choix addresse MAC
 device_address = discover_bluetooth_devices()
 
 
 # Changer le nom de l'ordinateur en "TEST_BLUE"
-print(f"Changement du nom de l'ordinateur en {new_name}...")
+print(f"Change Bluetooth name to : {new_name}...")
 change_computer_name(new_name)
 
 
@@ -195,7 +195,7 @@ if device_address:
     if socket:
         # Faire quelque chose avec le socket Bluetooth
         # Par exemple, envoyer des données
-        socket.send("Hello, Bluetooth device!")
+        socket.send("Hello bitch !")
         socket.close()
 
 
