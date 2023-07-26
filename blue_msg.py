@@ -118,27 +118,26 @@ def discover_bluetooth_devices():
     
     #For only select lines with "NEW"
     data = filter_lines_with_new(scan_out)
-
-    # sup des éléments après les 3 premiers commme ça on garde pas le nom peux importe cb d'éléments il prend se chien
+    # Delete all elements after the 3rd for exclude name in scope result 
     data = data[:3]
     device_name = data[3:]
 
     data = ''.join(str(item) for item in data)
 
-    #filtre pour qu'il ne reste que la MAC add (avec les flag de couleurs)
+    #Filter for MAC address (for detect with the fucking colors flags )
     test = detecter_adresse_mac(data)
     return test
 
 
 
 
-# Changer le nom de l'ordinateur
+# Change bluetooth name
 def change_computer_name(new_name):
     new_name = f'"{new_name}"'
     os.system(f"hciconfig hci0 name '{new_name}'")
     time.sleep(2)
 
-# Se connecter au premier périphérique Bluetooth trouvé
+# Bluetooth connexion fonction
 def connect_bluetooth(device_name, device_address):
     try:
         socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
@@ -149,7 +148,7 @@ def connect_bluetooth(device_name, device_address):
         print(BOLD, RED,f"[!] Failed to connect:", err, RESET)
         return None
 
-
+#Bluetooth pair fonction
 def pair_bluetooth(device_address):
     counter =+ 1
 
@@ -170,19 +169,18 @@ def pair_bluetooth(device_address):
         pass
 
 
-
-# Trouver et afficher les adresses MAC des périphériques Bluetooth à proximité
+# Find and print bt MAC addresss 
 print("[+] Try to find Bluetooth devices...")
-#choix addresse MAC
+#MAC address choice
 device_address = discover_bluetooth_devices()
 
 
-# Changer le nom de l'ordinateur en "TEST_BLUE"
+# Change bluetooth name
 print(f"[+] Change Bluetooth name to : {new_name}...")
 change_computer_name(new_name)
 
 
-# Se connecter au premier périphérique Bluetooth trouvé
+# Bluetooth pairing
 print(f"[+] Connect to {device_name} MAC : {device_address}")
 
 pair_bluetooth(device_address)
@@ -198,5 +196,3 @@ if device_address:
 
 #start bluetooth service
 os.system("bluetoothctl scan off && systemctl stop bluetooth")
-
-#Pas de connexion chacal
