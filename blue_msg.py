@@ -60,7 +60,7 @@ f"""
         global new_name
         global spam_counter
         message_input = f"{BOLD}{BLUE}[?] Choose your message : {RESET}"
-        spam_counter_msg = f"{BOLD}{BLUE}[?] How often do I pair to the target ? [FOR SPAM OR NOT] : {RESET}"
+        spam_counter_msg = f"{BOLD}{BLUE}[?] How often do I hit the target ? [1 for Normal, >1 for Spam] : {RESET}"
 
         new_name = input(message_input)
         spam_counter = int(input(spam_counter_msg))
